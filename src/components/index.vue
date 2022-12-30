@@ -1,7 +1,7 @@
 <template>
   <el-space wrap style="margin: 0 auto" class="center">
     <!-- 查询  -->
-    <el-card class="box-card" style="width: 400px">
+    <el-card class="box-card" style="width: 70vw">
       <el-row :gutter="24">
         <el-col :span="18"><el-input v-model="query_key" placeholder="输入一个键以查询值" /></el-col>
         <el-col :span="2"><el-button el-button type="primary" @click="fetchData">查询</el-button></el-col>
@@ -10,7 +10,7 @@
     </el-card>
 
     <!-- 插入 -->
-    <el-card class="box-card" style="width: 400px">
+    <el-card class="box-card" style="width: 70vw">
       <el-row :gutter="24">
         <el-col :span="18"><el-input v-model="set_key" placeholder="键" /></el-col>
         <el-col :span="18"><el-input v-model="set_value" placeholder="值" style="margin-top: 6px"/></el-col>
@@ -19,7 +19,7 @@
     </el-card>
 
     <!-- 删除 -->
-    <el-card class="box-card" style="width: 400px">
+    <el-card class="box-card" style="width: 70vw">
       <el-row :gutter="24">
         <el-col :span="18"><el-input v-model="del_key" placeholder="输入一个键以删除值" /></el-col>
         <el-col :span="2"><el-button el-button type="primary" @click="delData">删除</el-button></el-col>
@@ -62,6 +62,7 @@ export default {
       })
       this.loading = false
     },
+
     showAllData() {
       axios.get('https://backend.lolicon.fit/getAll').then((res) => {
         console.log('Fetch data -> ', res.data)
@@ -90,6 +91,7 @@ export default {
         })
       })
     },
+
     delData() {
       if (this.del_key === "") {
         this.$messageBox({
@@ -115,6 +117,7 @@ export default {
         }
       })
     }
+
   },
   data() {
     return {
