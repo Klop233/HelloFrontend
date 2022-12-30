@@ -1,49 +1,27 @@
 <template>
   <el-space wrap style="margin: 0 auto" class="center">
     <el-card class="box-card" style="width: 400px">
-      <el-container>
-        <el-container>
-          <el-header>
-            <el-row :gutter="24">
-              <el-col :span="20"><el-input v-model="query_key" placeholder="输入一个键以查询值" /></el-col>
-              <el-col :span="4"><el-button el-button type="primary" @click="fetchData" :loading=$data.loading>查询</el-button></el-col>
 
-            </el-row>
-          </el-header>
-          <el-main>
-            <el-col :span="4"><el-button el-button type="primary" @click="showAllData" :loading=$data.loading>显示所有数据</el-button></el-col>
-            <p id="response"></p>
-          </el-main>
-        </el-container>
-      </el-container>
+      <el-row :gutter="24">
+        <el-col :span="18"><el-input v-model="query_key" placeholder="输入一个键以查询值" /></el-col>
+        <el-col :span="2"><el-button el-button type="primary" @click="fetchData">查询</el-button></el-col>
+      </el-row>
+      <el-button el-button type="primary" @click="showAllData" :loading=$data.loading style="margin-top: 8px">显示所有数据</el-button>
     </el-card>
 
     <el-card class="box-card" style="width: 400px">
-      <el-container>
-        <el-container>
-          <el-header>
-            <el-row :gutter="30">
-              <el-col :span="15"><el-input v-model="set_key" placeholder="键" /></el-col>
-              <el-col :span="15"><el-input v-model="set_value" placeholder="值" style="margin-top: 6px"/></el-col>
-              <el-col :span="4"><el-button el-button type="primary" @click="setData" :loading=$data.loading>设置</el-button></el-col>
-            </el-row>
-          </el-header>
-        </el-container>
-      </el-container>
+      <el-row :gutter="24">
+        <el-col :span="18"><el-input v-model="set_key" placeholder="键" /></el-col>
+        <el-col :span="18"><el-input v-model="set_value" placeholder="值" style="margin-top: 6px"/></el-col>
+        <el-col :span="2"><el-button el-button type="primary" @click="setData" style="margin-top: 6px">设置</el-button></el-col>
+      </el-row>
     </el-card>
 
     <el-card class="box-card" style="width: 400px">
-      <el-container>
-        <el-container>
-          <el-header>
-            <el-row :gutter="24">
-              <el-col :span="20"><el-input v-model="del_key" placeholder="输入一个键以删除值" /></el-col>
-              <el-col :span="4"><el-button el-button type="primary" @click="delData" :loading=$data.loading>删除</el-button></el-col>
-
-            </el-row>
-          </el-header>
-        </el-container>
-      </el-container>
+      <el-row :gutter="24">
+        <el-col :span="18"><el-input v-model="del_key" placeholder="输入一个键以删除值" /></el-col>
+        <el-col :span="2"><el-button el-button type="primary" @click="delData">删除</el-button></el-col>
+      </el-row>
     </el-card>
   </el-space>
 
