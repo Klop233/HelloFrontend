@@ -141,7 +141,8 @@ export default {
   bottom: 0;
   width: 100%;
   height: 50px;
-  background-color: #eee;
+  /*background-color: rgb(25,202,173);*/
+  background: linear-gradient(to bottom right, rgb(25,202,173), rgb(190,237,109));
   z-index: 9999;
 }
 </style>
