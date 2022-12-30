@@ -1,7 +1,7 @@
 <template>
   <el-space wrap style="margin: 0 auto" class="center">
+    <!-- 查询  -->
     <el-card class="box-card" style="width: 400px">
-
       <el-row :gutter="24">
         <el-col :span="18"><el-input v-model="query_key" placeholder="输入一个键以查询值" /></el-col>
         <el-col :span="2"><el-button el-button type="primary" @click="fetchData">查询</el-button></el-col>
@@ -9,6 +9,7 @@
       <el-button el-button type="primary" @click="showAllData" :loading=$data.loading style="margin-top: 8px">显示所有数据</el-button>
     </el-card>
 
+    <!-- 插入 -->
     <el-card class="box-card" style="width: 400px">
       <el-row :gutter="24">
         <el-col :span="18"><el-input v-model="set_key" placeholder="键" /></el-col>
@@ -17,6 +18,7 @@
       </el-row>
     </el-card>
 
+    <!-- 删除 -->
     <el-card class="box-card" style="width: 400px">
       <el-row :gutter="24">
         <el-col :span="18"><el-input v-model="del_key" placeholder="输入一个键以删除值" /></el-col>
@@ -25,6 +27,7 @@
     </el-card>
   </el-space>
 
+  <!-- footer -->
   <div class="footer">
     <p style="color:black" class="center">© Copyright | Klop233 All Rights reserved 2022 - 2023 | Vue learning project</p>
   </div>
