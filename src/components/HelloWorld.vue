@@ -24,7 +24,7 @@ export default {
     fetchData() {
       this.loading = true
 
-      axios.get('http://backend.lolicon.fit/get', {
+      axios.get('https://backend.lolicon.fit/get', {
         params: {
           key: this.key
         }
