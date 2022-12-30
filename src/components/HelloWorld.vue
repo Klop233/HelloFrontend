@@ -24,7 +24,7 @@
           <el-header>
             <el-row :gutter="30">
               <el-col :span="15"><el-input v-model="set_key" placeholder="键" /></el-col>
-              <el-col :span="15"><el-input v-model="set_value" placeholder="值" /></el-col>
+              <el-col :span="15"><el-input v-model="set_value" placeholder="值" style="margin-top: 6px"/></el-col>
               <el-col :span="4"><el-button el-button type="primary" @click="setData" :loading=$data.loading>设置</el-button></el-col>
             </el-row>
           </el-header>
