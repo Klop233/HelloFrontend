@@ -102,7 +102,7 @@ export default {
       axios.post('https://backend.lolicon.fit/set',{
         "key": this.set_key,
         "value": this.set_value
-      }).then((res) => {
+      }).then(() => {
         this.$messageBox({
           type: 'success',
           message: '设置键值对成功'
@@ -159,8 +159,8 @@ export default {
 
 .footer {
   position: fixed;
-  left: 0px;
-  bottom: 0px;
+  left: 0;
+  bottom: 0;
   width: 100%;
   height: 50px;
   background-color: #eee;
