@@ -1,5 +1,5 @@
 <template>
-  <el-space wrap style="margin: 0 auto">
+  <el-space wrap style="margin: 0 auto" class="center">
     <el-card class="box-card" style="width: 400px">
       <el-container>
         <el-container>
@@ -145,5 +145,11 @@ export default {
 </script>
 
 <style>
-
+.center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
 </style>
