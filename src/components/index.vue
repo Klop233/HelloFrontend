@@ -132,6 +132,11 @@ export default {
 </script>
 
 <style>
+@font-face {
+  font-family: 'Title';
+  src: url()
+}
+
 .center {
   position: absolute;
   left: 50%;
@@ -149,6 +154,8 @@ export default {
   height: 50px;
   /*background-color: rgb(25,202,173);*/
   background: linear-gradient(to bottom right, rgb(25,202,173), rgb(190,237,109));
-  z-index: 9999;
+  /*z-index: 9999;*/
+  font-family: 'Title';
+  font-size: 18px;
 }
 </style>
