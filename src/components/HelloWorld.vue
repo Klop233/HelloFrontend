@@ -47,6 +47,9 @@
     </el-card>
   </el-space>
 
+  <div class="footer">
+    <p style="color:black" class="center">© Copyright | Klop233 All Rights reserved 2022 - 2023 | Vue learning project</p>
+  </div>
 </template>
 
 <script>
@@ -150,6 +153,17 @@ export default {
   left: 50%;
   top: 50%;
   -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -60%);
+}
+
+
+.footer {
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  width: 100%;
+  height: 50px;
+  background-color: #eee;
+  z-index: 9999;
 }
 </style>
