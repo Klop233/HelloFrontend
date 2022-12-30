@@ -1,10 +1,18 @@
 <template>
-  <div class="container">
-    <el-input v-model="key" placeholder="输入一个键以查询值" />
-    <el-button type="success" @click="fetchData" :loading=$data.loading>查询</el-button>
-  </div>
-  <h2>获取到的数据: <p id="response"></p></h2>
-  <br>
+
+
+
+  <el-container>
+    <el-header>
+      <el-row :gutter="21">
+        <el-col :span="20"><el-input v-model="key" placeholder="输入一个键以查询值" /></el-col>
+        <el-col :span="4"><el-button el-button type="primary" @click="fetchData" :loading=$data.loading>查询</el-button></el-col>
+      </el-row>
+    </el-header>
+    <el-main>
+      <p id="response"></p>
+    </el-main>
+  </el-container>
 </template>
 
 <script>
@@ -16,18 +24,28 @@ export default {
     fetchData() {
       this.loading = true
 
-      axios.get('http://127.0.0.1:5000/get', {
+      axios.get('http://backend.lolicon.fit/get', {
         params: {
           key: this.key
         }
-      }).then(function (res) {
-        console.log("Fetch data -> ", res.data)
+      }).then(res => {
+        console.log('Fetch data -> ', res.data)
         if (res.data.code === 404) {
-          document.getElementById("response").innerHTML = "未查询到数据"
+          this.$messageBox({
+            type: 'error',
+            message: "查询失败，没有这个键"
+          })
         } else {
-          document.getElementById("response").innerHTML = res.data.data
+          this.$messageBox({
+            type: 'success',
+            message: '查询成功，数据: ' + res.data.data
+          })
         }
       })
+
+
+
+
       this.loading = false
     },
   },
@@ -41,19 +59,5 @@ export default {
 </script>
 
 <style>
-.button {
-  margin: 0 auto;
-}
-
-.text {
-  text-align: center;
-}
-
-.container {
-  display: flex;
-  justify-content: center;
-  margin-left: 10px;
-  margin-right: 10px;
-}
 
 </style>
