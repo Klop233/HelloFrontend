@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import ElementPlus from 'element-plus'
-import 'amfe-flexible'
+import 'lib-flexible'
 import 'element-plus/dist/index.css'
 import './assets/main.css'
 
