@@ -4,25 +4,25 @@
     <el-card class="box-card">
       <el-row :gutter="24">
         <el-col :span="18"><el-input v-model="query_key" placeholder="输入一个键以查询值" /></el-col>
-        <el-col :span="2"><el-button el-button type="primary" @click="fetchData">查询</el-button></el-col>
+        <el-col :span="2"><el-button el-button type="primary" @click="getData" :loading=this.query.loading>查询</el-button></el-col>
       </el-row>
-      <el-button el-button type="primary" @click="showAllData" :loading=$data.loading style="margin-top: 8px">显示所有数据</el-button>
+      <el-button el-button type="primary" @click="showAllData" :loading=this.query_all.loading style="margin-top: 8px">显示所有数据</el-button>
     </el-card>
 
     <!-- 插入 -->
     <el-card class="box-card">
       <el-row :gutter="24">
-        <el-col :span="18"><el-input v-model="set_key" placeholder="键" /></el-col>
-        <el-col :span="18"><el-input v-model="set_value" placeholder="值" style="margin-top: 6px"/></el-col>
-        <el-col :span="2"><el-button el-button type="primary" @click="setData" style="margin-top: 6px">设置</el-button></el-col>
+        <el-col :span="18"><el-input v-model=this.set.key placeholder="键" /></el-col>
+        <el-col :span="18"><el-input v-model=this.set.value placeholder="值" style="margin-top: 6px"/></el-col>
+        <el-col :span="2"><el-button el-button type="primary" @click="setData" style="margin-top: 6px" :loading="this.set.loading">设置</el-button></el-col>
       </el-row>
     </el-card>
 
     <!-- 删除 -->
     <el-card class="box-card">
       <el-row :gutter="24">
-        <el-col :span="18"><el-input v-model="del_key" placeholder="输入一个键以删除值" /></el-col>
-        <el-col :span="2"><el-button el-button type="primary" @click="delData">删除</el-button></el-col>
+        <el-col :span="18"><el-input v-model=this.del.key placeholder="输入一个键以删除值" /></el-col>
+        <el-col :span="2"><el-button el-button type="primary" @click="delData" :loading=this.del.loading>删除</el-button></el-col>
       </el-row>
     </el-card>
   </el-space>
@@ -42,12 +42,12 @@ axios.defaults.baseURL = 'https://backend.lolicon.fit/'
 export default {
   name: "index",
   methods: {
-    fetchData() {
-      this.loading = true
+    getData() {
+      this.query.loading = true
 
       axios.get('get', {
         params: {
-          key: this.query_key
+          key: this.query.key
         }
       }).then(res => {
         console.log('Fetch data -> ', res.data)
@@ -62,25 +62,27 @@ export default {
             message: '查询成功，数据: ' + res.data.data
           })
         }
-      }).catch(error => {
 
+        this.query.loading = false
       })
-      this.loading = false
     },
 
-    showAllData() {
+    async showAllData() {
+      this.query_all.loading = true
+
       axios.get('getAll').then((res) => {
         console.log('Fetch data -> ', res.data)
         this.$messageBox({
           type: 'success',
           message: '查询成功，数据: ' + res.data.data
         })
+        this.query_all.loading = false
       }).catch(error => {
         console.log(error.data)
       })
     },
     setData() {
-      if (this.set_key === "" || this.set_value === "") {
+      if (this.set.key === "" || this.set.value === "") {
         this.$messageBox({
           type: 'error',
           message: '键或值不能为空'
@@ -88,7 +90,7 @@ export default {
         return;
       }
 
-      if (this.set_key.length > 100 || this.set_value > 100) {
+      if (this.set.key.length > 100 || this.set.value.length > 100) {
         this.$messageBox({
           type: 'error',
           message: '你输入的数据太tm长了'
@@ -96,19 +98,21 @@ export default {
         return;
       }
 
+      this.set.loading = true
       axios.post('set',{
-        "key": this.set_key,
-        "value": this.set_value
+        "key": this.set.key,
+        "value": this.set.value
       }).then(() => {
         this.$messageBox({
           type: 'success',
           message: '设置键值对成功'
         })
+        this.set.loading = false
       })
     },
 
     delData() {
-      if (this.del_key === "") {
+      if (this.del.key === "") {
         this.$messageBox({
           type: 'error',
           message: '键不能为空'
@@ -116,8 +120,9 @@ export default {
         return;
       }
 
+      this.del.loading = true
       axios.post('del', {
-        "key": this.del_key
+        "key": this.del.key
       }).then((res) => {
         if (res.data.code === "404") {
           this.$messageBox({
@@ -130,17 +135,29 @@ export default {
             message: '删除成功'
           })
         }
+        this.del.loading = false
       })
     }
 
   },
   data() {
     return {
-      loading: false,
-      query_key: "",
-      set_key: "",
-      set_value: "",
-      del_key: ""
+      query: {
+        loading: false,
+        key: ''
+      },
+      set: {
+        loading: false,
+        key: '',
+        value: ''
+      },
+      del: {
+        loading: false,
+        key: ''
+      },
+      query_all: {
+        loading: false,
+      }
     }
   }
 }
@@ -168,7 +185,7 @@ export default {
   /*background-color: rgb(25,202,173);*/
   background: linear-gradient(to bottom right, rgb(25,202,173), rgb(190,237,109));
   /*z-index: 9999;*/
-  font-family: 'Title', Arial;
+  font-family: 'Title', Arial,serif;
   font-size: 18px;
 }
 </style>
