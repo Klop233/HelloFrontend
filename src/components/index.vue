@@ -176,7 +176,7 @@ export default {
                 if (res.data.code === 200) {
                     this.$messageBox({
                         type: 'success',
-                        message: '成功清楚所有数据'
+                        message: '成功清除所有数据'
                     })
                 } else {
                     this.$messageBox({
