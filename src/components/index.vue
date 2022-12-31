@@ -28,9 +28,9 @@
   </el-space>
 
   <!-- footer -->
-<!--  <div class="footer">-->
-<!--    <p style="color:black" class="center">© Copyright | Klop233 All Rights reserved 2022 - 2023 | Vue learning project</p>-->
-<!--  </div>-->
+  <!--  <div class="footer">-->
+  <!--    <p style="color:black" class="center">© Copyright | Klop233 All Rights reserved 2022 - 2023 | Vue learning project</p>-->
+  <!--  </div>-->
 </template>
 
 <script>
@@ -64,6 +64,7 @@ export default {
         }
 
         this.query.loading = false
+        this.query.key = ''
       })
     },
 
@@ -81,6 +82,7 @@ export default {
         console.log(error.data)
       })
     },
+
     setData() {
       if (this.set.key === "" || this.set.value === "") {
         this.$messageBox({
@@ -108,6 +110,8 @@ export default {
           message: '设置键值对成功'
         })
         this.set.loading = false
+        this.set.key = ''
+        this.set.value = ''
       })
     },
 
@@ -136,6 +140,7 @@ export default {
           })
         }
         this.del.loading = false
+        this.del.key = ''
       })
     }
 
