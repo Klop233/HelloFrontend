@@ -15,6 +15,9 @@
                 <el-button el-button type="primary" @click="showAllData" :loading=this.query_all.loading
                            style="margin-top: 8px">显示所有数据
                 </el-button>
+                <el-button el-button type="danger" @click="cleanAll" :loading=this.clean_all.loading
+                           style="margin-top: 8px">删除所有数据
+                </el-button>
             </el-card>
 
             <!-- 插入 -->
@@ -91,7 +94,7 @@ export default {
             })
         },
 
-        async showAllData() {
+        showAllData() {
             this.query_all.loading = true
 
             axios.get('getAll').then((res) => {
@@ -165,6 +168,25 @@ export default {
                 this.del.loading = false
                 this.del.key = ''
             })
+        },
+
+        cleanAll() {
+            this.clean_all.loading = true
+            axios.post('cleanAll').then((res) => {
+                if (res.data.code === 200) {
+                    this.$messageBox({
+                        type: 'success',
+                        message: '成功清楚所有数据'
+                    })
+                } else {
+                    this.$messageBox({
+                        type: 'error',
+                        message: '请求已发出，但响应不正确： ' + res.data
+                    })
+                }
+
+                this.clean_all.loading = false
+            })
         }
 
     },
@@ -184,7 +206,10 @@ export default {
                 key: ''
             },
             query_all: {
-                loading: false,
+                loading: false
+            },
+            clean_all: {
+                loading: false
             }
         }
     }
