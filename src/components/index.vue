@@ -3,7 +3,7 @@
     <!-- 查询  -->
     <el-card class="box-card">
       <el-row :gutter="24">
-        <el-col :span="18"><el-input v-model="query_key" placeholder="输入一个键以查询值" /></el-col>
+        <el-col :span="18"><el-input v-model=this.query.key placeholder="输入一个键以查询值" /></el-col>
         <el-col :span="2"><el-button el-button type="primary" @click="getData" :loading=this.query.loading>查询</el-button></el-col>
       </el-row>
       <el-button el-button type="primary" @click="showAllData" :loading=this.query_all.loading style="margin-top: 8px">显示所有数据</el-button>
