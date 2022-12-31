@@ -3,7 +3,7 @@ import HelloWorld from "./components/index.vue"
 </script>
 
 <template>
-  <HelloWorld/>
+  <HelloWorld style="" />
   <router-view></router-view>
 </template>
 

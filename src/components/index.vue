@@ -1,31 +1,33 @@
 <template>
-  <el-space wrap style="margin: 0 auto" class="center">
-    <!-- 查询  -->
-    <el-card class="box-card">
-      <el-row :gutter="24">
-        <el-col :span="18"><el-input v-model=this.query.key placeholder="输入一个键以查询值" /></el-col>
-        <el-col :span="2"><el-button el-button type="primary" @click="getData" :loading=this.query.loading>查询</el-button></el-col>
-      </el-row>
-      <el-button el-button type="primary" @click="showAllData" :loading=this.query_all.loading style="margin-top: 8px">显示所有数据</el-button>
-    </el-card>
+  <div>
+    <el-space wrap class="center">
+      <!-- 查询  -->
+      <el-card class="box-card">
+        <el-row :gutter="24">
+          <el-col :span="18"><el-input v-model=this.query.key placeholder="输入一个键以查询值" /></el-col>
+          <el-col :span="2"><el-button el-button type="primary" @click="getData" :loading=this.query.loading>查询</el-button></el-col>
+        </el-row>
+        <el-button el-button type="primary" @click="showAllData" :loading=this.query_all.loading style="margin-top: 8px">显示所有数据</el-button>
+      </el-card>
 
-    <!-- 插入 -->
-    <el-card class="box-card">
-      <el-row :gutter="24">
-        <el-col :span="18"><el-input v-model=this.set.key placeholder="键" /></el-col>
-        <el-col :span="18"><el-input v-model=this.set.value placeholder="值" style="margin-top: 6px"/></el-col>
-        <el-col :span="2"><el-button el-button type="primary" @click="setData" style="margin-top: 6px" :loading="this.set.loading">设置</el-button></el-col>
-      </el-row>
-    </el-card>
+      <!-- 插入 -->
+      <el-card class="box-card">
+        <el-row :gutter="24">
+          <el-col :span="18"><el-input v-model=this.set.key placeholder="键" /></el-col>
+          <el-col :span="18"><el-input v-model=this.set.value placeholder="值" style="margin-top: 6px"/></el-col>
+          <el-col :span="2"><el-button el-button type="primary" @click="setData" style="margin-top: 6px" :loading="this.set.loading">设置</el-button></el-col>
+        </el-row>
+      </el-card>
 
-    <!-- 删除 -->
-    <el-card class="box-card">
-      <el-row :gutter="24">
-        <el-col :span="18"><el-input v-model=this.del.key placeholder="输入一个键以删除值" /></el-col>
-        <el-col :span="2"><el-button el-button type="primary" @click="delData" :loading=this.del.loading>删除</el-button></el-col>
-      </el-row>
-    </el-card>
-  </el-space>
+      <!-- 删除 -->
+      <el-card class="box-card">
+        <el-row :gutter="24">
+          <el-col :span="18"><el-input v-model=this.del.key placeholder="输入一个键以删除值" /></el-col>
+          <el-col :span="2"><el-button el-button type="primary" @click="delData" :loading=this.del.loading>删除</el-button></el-col>
+        </el-row>
+      </el-card>
+    </el-space>
+  </div>
 
   <!-- footer -->
   <!--  <div class="footer">-->
@@ -170,11 +172,9 @@ export default {
 
 <style>
 .center {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .box-card {
@@ -182,15 +182,13 @@ export default {
 }
 
 .footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 50px;
-  /*background-color: rgb(25,202,173);*/
-  background: linear-gradient(to bottom right, rgb(25,202,173), rgb(190,237,109));
-  /*z-index: 9999;*/
-  font-family: 'Title', Arial,serif;
-  font-size: 18px;
+  position:absolute;
+  width: 200px;
+  height: 200px;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  margin: auto;
 }
 </style>
