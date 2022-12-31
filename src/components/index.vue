@@ -5,7 +5,7 @@
             <el-card class="box-card">
                 <el-row :gutter="24">
                     <el-col :span="18">
-                        <el-input v-model=this.query.key placeholder="输入一个键以查询值"/>
+                        <el-input v-model=this.query.key @keydown.enter="getData" placeholder="输入一个键以查询值"/>
                     </el-col>
                     <el-col :span="2">
                         <el-button el-button type="primary" @click="getData" :loading=this.query.loading>查询
@@ -24,10 +24,10 @@
             <el-card class="box-card">
                 <el-row :gutter="24">
                     <el-col :span="18">
-                        <el-input v-model=this.set.key placeholder="键"/>
+                        <el-input v-model=this.set.key @keydown.enter="setData" placeholder="键"/>
                     </el-col>
                     <el-col :span="18">
-                        <el-input v-model=this.set.value placeholder="值" style="margin-top: 6px"/>
+                        <el-input v-model=this.set.value @keydown.enter="setData" placeholder="值" style="margin-top: 6px"/>
                     </el-col>
                     <el-col :span="2">
                         <el-button el-button type="primary" @click="setData" style="margin-top: 6px"
@@ -41,7 +41,7 @@
             <el-card class="box-card">
                 <el-row :gutter="24">
                     <el-col :span="18">
-                        <el-input v-model=this.del.key placeholder="输入一个键以删除值"/>
+                        <el-input v-model=this.del.key @keydown.enter="delData" placeholder="输入一个键以删除值"/>
                     </el-col>
                     <el-col :span="2">
                         <el-button el-button type="primary" @click="delData" :loading=this.del.loading>删除</el-button>
